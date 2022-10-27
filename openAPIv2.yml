@@ -1,0 +1,871 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Adres:
+      additionalProperties: false
+      properties:
+        adresat:
+          type: string
+        budynek:
+          type: string
+        gmina:
+          type: string
+        kod:
+          type: string
+        kraj:
+          type: string
+        lokal:
+          type: string
+        miasto:
+          type: string
+        opisNietypowegoMiejsca:
+          type: string
+        powiat:
+          type: string
+        simc:
+          type: string
+        skrytkaPocztowa:
+          type: string
+        terc:
+          type: string
+        ulic:
+          type: string
+        ulica:
+          type: string
+        wojewodztwo:
+          type: string
+      type: object
+    BladApi:
+      additionalProperties: false
+      properties:
+        code:
+          allOf:
+          - $ref: '#/components/schemas/KodBledu'
+        message:
+          type: string
+      type: object
+    DaneRaportu:
+      additionalProperties: false
+      properties:
+        dataUtworzenia:
+          format: date-time
+          type: string
+        format:
+          type: string
+        id:
+          type: string
+        nazwa:
+          type: string
+        raport:
+          type: string
+      type: object
+    FirmaCeidg:
+      additionalProperties: false
+      properties:
+        adresDoreczenElektronicznych:
+          type: string
+        adresDzialalnosci:
+          allOf:
+          - $ref: '#/components/schemas/Adres'
+        adresKorespondencyjny:
+          allOf:
+          - $ref: '#/components/schemas/Adres'
+        adresyDzialalnosciDodatkowe:
+          items:
+            $ref: '#/components/schemas/Adres'
+          type: array
+        dataRozpoczecia:
+          format: date-time
+          type: string
+        dataWykreslenia:
+          format: date-time
+          type: string
+        dataWznowienia:
+          format: date-time
+          type: string
+        dataZakonczenia:
+          format: date-time
+          type: string
+        dataZawieszenia:
+          format: date-time
+          type: string
+        dataZgonu:
+          format: date-time
+          type: string
+        email:
+          type: string
+        id:
+          type: string
+        innaFormaKonaktu:
+          type: string
+        kwalifikacjeZawodowe:
+          items:
+            $ref: '#/components/schemas/KwalifikacjaZawodowa'
+          type: array
+        link:
+          type: string
+        nazwa:
+          type: string
+        numerStatusu:
+          format: int32
+          type: integer
+        obywatelstwa:
+          items:
+            $ref: '#/components/schemas/Obywatelstwo'
+          type: array
+        ograniczenia:
+          items:
+            $ref: '#/components/schemas/Ograniczenie'
+          type: array
+        ograniczeniaZdolnosciPrawnej:
+          items:
+            $ref: '#/components/schemas/Kurator'
+          type: array
+        pkd:
+          items:
+            type: string
+          type: array
+        pkdGlowny:
+          type: string
+        podstawyPrawneWykreslenia:
+          items:
+            type: string
+          type: array
+        spolki:
+          items:
+            $ref: '#/components/schemas/Spolka'
+          type: array
+        status:
+          allOf:
+          - $ref: '#/components/schemas/Status'
+        telefon:
+          type: string
+        upadlosci:
+          items:
+            $ref: '#/components/schemas/Upadlosc'
+          type: array
+        uprawnienia:
+          items:
+            $ref: '#/components/schemas/Uprawnienie'
+          type: array
+        wlasciciel:
+          allOf:
+          - $ref: '#/components/schemas/Osoba'
+        wspolnoscMajatkowa:
+          format: int32
+          type: integer
+        wspolnoscMajatkowaDataUstania:
+          format: date-time
+          type: string
+        www:
+          type: string
+        zakazy:
+          items:
+            $ref: '#/components/schemas/Zakaz'
+          type: array
+        zarzadSukcesyjnyDataUstanowienia:
+          format: date-time
+          type: string
+        zarzadSukcesyjnyDataWygasniecia:
+          format: date-time
+          type: string
+        zarzadcaSukcesyjny:
+          allOf:
+          - $ref: '#/components/schemas/Sukcesja'
+      type: object
+    FirmaRequest:
+      additionalProperties: false
+      properties:
+        ids:
+          items:
+            type: string
+          type: array
+        nip:
+          type: string
+        regon:
+          type: string
+      type: object
+    FirmaResponse:
+      additionalProperties: false
+      properties:
+        firma:
+          items:
+            $ref: '#/components/schemas/FirmaCeidg'
+          type: array
+        properties:
+          allOf:
+          - $ref: '#/components/schemas/Metadata'
+      type: object
+    FirmyRequest:
+      additionalProperties: false
+      properties:
+        budynek:
+          items:
+            type: string
+          type: array
+        datado:
+          format: date-time
+          type: string
+        dataod:
+          format: date-time
+          type: string
+        gmina:
+          items:
+            type: string
+          type: array
+        imie:
+          items:
+            type: string
+          type: array
+        kod:
+          items:
+            type: string
+          type: array
+        lokal:
+          items:
+            type: string
+          type: array
+        miasto:
+          items:
+            type: string
+          type: array
+        nazwa:
+          items:
+            type: string
+          type: array
+        nazwisko:
+          items:
+            type: string
+          type: array
+        nip:
+          items:
+            type: string
+          type: array
+        nip_sc:
+          items:
+            type: string
+          type: array
+        pkd:
+          items:
+            type: string
+          type: array
+        powiat:
+          items:
+            type: string
+          type: array
+        regon:
+          items:
+            type: string
+          type: array
+        regon_sc:
+          items:
+            type: string
+          type: array
+        status:
+          items:
+            type: string
+          type: array
+        ulica:
+          items:
+            type: string
+          type: array
+        wojewodztwo:
+          items:
+            type: string
+          type: array
+      type: object
+    FirmyResponse:
+      additionalProperties: false
+      properties:
+        count:
+          format: int32
+          type: integer
+        firmy:
+          items:
+            $ref: '#/components/schemas/FirmaCeidg'
+          type: array
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Nawigacja'
+        properties:
+          allOf:
+          - $ref: '#/components/schemas/Metadata'
+      type: object
+    KodBledu:
+      enum:
+      - NIEPOPRAWNY_ZAKRES_DAT
+      - NIEPOPRAWNY_NUMER_NIP
+      - NIEPOPRAWNY_NUMER_NIP_SC
+      - NIEPOPRAWNY_NUMER_STRONY
+      - NIEPOPRAWNY_ROZMIAR_STRONY
+      - NIEPOPRAWNY_KOD_POCZTOWY
+      - NIEPOPRAWNY_NUMER_REGON
+      - NIEPOPRAWNY_NUMER_REGON_SC
+      - BRAK_PARAMETROW_ZAPYTANIA
+      - NIEPOPRAWNA_LISTA_PARAMETROW
+      - NIEDOZWOLONE_POLE_SORTOWANIA
+      - NIEPOPRAWNA_ILOSC_IDENTYFIKATOROW
+      - BRAK_IDENTYFIKATORA
+      - NIEPOPRAWNY_STATUS
+      - NIEDOZWOLONE_POLE
+      - NIECZYTELNY_IDENTYFIKATOR
+      format: int32
+      type: string
+    Kurator:
+      additionalProperties: false
+      properties:
+        dataRestrykcji:
+          format: date-time
+          type: string
+        imie:
+          type: string
+        nazwisko:
+          type: string
+        nip:
+          type: string
+        trybRestrykcji:
+          type: string
+        ustanowienieKuratora:
+          format: date-time
+          type: string
+        wprowadzonePrzez:
+          type: string
+      type: object
+    KwalifikacjaZawodowa:
+      additionalProperties: false
+      properties:
+        dataEgzaminu:
+          format: date-time
+          type: string
+        dataUniewaznienia:
+          format: date-time
+          type: string
+        rodzajKwalifikacji:
+          format: int32
+          type: integer
+        symbolZawodu:
+          type: string
+        wprowadzonyPrzez:
+          type: string
+        wydanyPrzez:
+          type: string
+        zawod:
+          type: string
+      type: object
+    Metadata:
+      additionalProperties: false
+      properties:
+        contentType:
+          type: string
+        dateModified:
+          format: date-time
+          type: string
+        datePublished:
+          format: date-time
+          type: string
+        description:
+          type: string
+        expires:
+          format: date-time
+          type: string
+        isPartOf:
+          type: string
+        keywords:
+          type: string
+        language:
+          type: string
+        provider:
+          type: string
+        rights:
+          type: string
+        temporalCoverage:
+          type: string
+        title:
+          type: string
+        updateFrequency:
+          type: string
+        url:
+          type: string
+      type: object
+    Nawigacja:
+      additionalProperties: false
+      properties:
+        first:
+          type: string
+        last:
+          type: string
+        next:
+          type: string
+        prev:
+          type: string
+        self:
+          type: string
+      type: object
+    Obywatelstwo:
+      additionalProperties: false
+      properties:
+        kraj:
+          type: string
+        symbol:
+          type: string
+      type: object
+    Ograniczenie:
+      additionalProperties: false
+      properties:
+        dataDo:
+          format: date-time
+          type: string
+        dataOd:
+          format: date-time
+          type: string
+        nazwa:
+          type: string
+        opis:
+          type: string
+        wprowadzonePrzez:
+          type: string
+      type: object
+    Osoba:
+      additionalProperties: false
+      properties:
+        imie:
+          type: string
+        nazwisko:
+          type: string
+        nip:
+          type: string
+        nipUchylony:
+          type: boolean
+        nipUniewaznienie:
+          type: boolean
+        regon:
+          type: string
+      type: object
+    RaportyRequest:
+      additionalProperties: false
+      properties:
+        datado:
+          format: date-time
+          type: string
+        dataod:
+          format: date-time
+          type: string
+      type: object
+    RaportyResponse:
+      additionalProperties: false
+      properties:
+        properties:
+          allOf:
+          - $ref: '#/components/schemas/Metadata'
+        raporty:
+          items:
+            $ref: '#/components/schemas/DaneRaportu'
+          type: array
+      type: object
+    Spolka:
+      additionalProperties: false
+      properties:
+        dataZawieszenia:
+          format: date-time
+          type: string
+        nip:
+          type: string
+        regon:
+          type: string
+      type: object
+    Status:
+      enum:
+      - AKTYWNY
+      - WYKRESLONY
+      - ZAWIESZONY
+      - OCZEKUJE_NA_ROZPOCZECIE_DZIALANOSCI
+      - WYLACZNIE_W_FORMIE_SPOLKI
+      format: int32
+      type: string
+    Sukcesja:
+      additionalProperties: false
+      properties:
+        adresDoreczenElektronicznych:
+          type: string
+        adresKorespondencyjny:
+          allOf:
+          - $ref: '#/components/schemas/Adres'
+        dataUstanowienia:
+          format: date-time
+          type: string
+        email:
+          type: string
+        imie:
+          type: string
+        innaFormaKonaktu:
+          type: string
+        nazwisko:
+          type: string
+        nip:
+          type: string
+        obywatelstwa:
+          items:
+            $ref: '#/components/schemas/Obywatelstwo'
+          type: array
+        telefon:
+          type: string
+        www:
+          type: string
+      type: object
+    TypBledu:
+      enum:
+      - Error204
+      - Error400
+      - Error403
+      - Error503
+      format: int32
+      type: string
+    Upadlosc:
+      additionalProperties: false
+      properties:
+        dataOrzeczenia:
+          format: date-time
+          type: string
+        imie:
+          type: string
+        naziwsko:
+          type: string
+        nip:
+          type: string
+        rodzajInformacji:
+          type: string
+      type: object
+    Uprawnienie:
+      additionalProperties: false
+      properties:
+        dataDo:
+          format: date-time
+          type: string
+        dataOd:
+          format: date-time
+          type: string
+        nazwa:
+          type: string
+        opis:
+          type: string
+        wprowadzonePrzez:
+          type: string
+      type: object
+    Zakaz:
+      additionalProperties: false
+      properties:
+        dataUprawomocnienia:
+          format: date-time
+          type: string
+        dataWydania:
+          format: date-time
+          type: string
+        okres:
+          type: string
+        opis:
+          type: string
+        typ:
+          type: string
+      type: object
+    ZmianaRequest:
+      additionalProperties: false
+      properties:
+        datado:
+          format: date-time
+          type: string
+        dataod:
+          format: date-time
+          type: string
+      type: object
+    ZmianaResponse:
+      additionalProperties: false
+      properties:
+        count:
+          format: int32
+          type: integer
+        identyfikatoryWpisow:
+          items:
+            format: uuid
+            type: string
+          type: array
+        links:
+          allOf:
+          - $ref: '#/components/schemas/Nawigacja'
+        properties:
+          allOf:
+          - $ref: '#/components/schemas/Metadata'
+      type: object
+    ZrodloDanych:
+      enum:
+      - CEIDG
+      format: int32
+      type: string
+paths:
+  /firma:
+    get:
+      parameters:
+      - in: query
+        name: requestData
+        required: true
+        schema:
+          $ref: '#/components/schemas/FirmaRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmaResponse'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/FirmaResponse'
+          description: Success
+        '204':
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+      tags:
+      - Resource
+  /firma/{id}:
+    get:
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmaResponse'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/FirmaResponse'
+          description: Success
+        '204':
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+      tags:
+      - Resource
+  /firmy:
+    get:
+      parameters:
+      - in: query
+        name: firmyRequest
+        required: true
+        schema:
+          $ref: '#/components/schemas/FirmyRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmyResponse'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/FirmyResponse'
+          description: Success
+        '204':
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+          description: Server Error
+      tags:
+      - Resource
+  /raport/{id}:
+    get:
+      description: Zwraca wybrany raport skompresowany ZIP
+      operationId: raport
+      parameters:
+      - description: Identyfikator
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+          description: Raport
+        '204':
+          description: "Brak wynik\xF3w"
+        '400':
+          content:
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+          description: Niepoprawnie skonstruowane zapytanie
+        '401':
+          description: Brak autoryzacji
+        '403':
+          description: "Brak uprawnie\u0144"
+        '404':
+          description: "Zas\xF3b nie istnieje"
+        '500':
+          description: "Wewn\u0119trzny b\u0142\u0105d serwera"
+        '503':
+          content:
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+          description: "Serwis niedost\u0119pny"
+      tags:
+      - Resource
+  /raporty:
+    get:
+      parameters:
+      - in: query
+        name: raportyRequest
+        required: true
+        schema:
+          $ref: '#/components/schemas/RaportyRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaportyResponse'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/RaportyResponse'
+          description: Success
+        '204':
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+          description: Server Error
+      tags:
+      - Resource
+  /zmiana:
+    get:
+      parameters:
+      - in: query
+        name: requestData
+        required: true
+        schema:
+          $ref: '#/components/schemas/ZmianaRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZmianaResponse'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ZmianaResponse'
+          description: Success
+        '204':
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BladApi'
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+      tags:
+      - Resource
+servers:
+- description: Generated server url
+  url: https://dane.biznes.gov.pl/api/ceidg/v2/
+security:
+  - bearerAuth: []
